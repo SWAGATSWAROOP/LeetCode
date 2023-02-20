@@ -60,3 +60,20 @@ public:
         }
     }
 };
+
+//Seen Solution
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int m = nums.size();
+        reverse(nums.begin(),nums.end());
+        k %= m;
+        int i = 0,n = k-1,j = k,z = m-1; 
+        while(i<n){
+            swap(nums[i++],nums[n--]);
+        }
+        while(j<z){
+            swap(nums[j++],nums[z--]);
+        }
+    }
+};
