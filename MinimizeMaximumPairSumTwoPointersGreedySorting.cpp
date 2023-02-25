@@ -54,3 +54,22 @@ public:
         return mx;
     }
 };
+
+//Using Priority Queue
+class Solution {
+public:
+    int minPairSum(vector<int>& nums) {
+        priority_queue<int> maxHeap(nums.begin(),nums.end());
+        priority_queue<int,vector<int>,greater<int>> minHeap(nums.begin(),nums.end());
+        int n = nums.size()/2;
+        int ans = INT_MIN;
+        while(n--){
+            int first = maxHeap.top();
+            maxHeap.pop();
+            int second = minHeap.top();
+            minHeap.pop();
+            ans = max(ans,first+second);
+        }
+        return ans;
+    }
+};
