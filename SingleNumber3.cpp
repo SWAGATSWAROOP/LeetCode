@@ -73,3 +73,21 @@ public:
         return v;
     }
 };
+
+//Using Bitmanipulation O(n) And O(1) Space
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int n = nums.size(),XOR = 0,mask = 1,a = 0,b = 0;
+        for(int i=0;i<n;i++) XOR ^= nums[i];
+        while(1){
+            if(!(XOR & mask)) mask = mask << 1;
+            else break;
+        }
+        for(int i=0;i<n;i++){
+            if(mask & nums[i]) a ^= nums[i];
+            else b ^= nums[i];
+        }
+        return {a,b};
+    }
+};
