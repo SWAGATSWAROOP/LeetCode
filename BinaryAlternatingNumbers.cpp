@@ -52,3 +52,14 @@ public:
         return true;
     }
 };
+
+
+//Unique Solution that is if we shift by 1 bit and add then we can add to get all 1111111 and then we can add 1 to get 1000000 type sequence which wil
+//have one more bit than original so anding or masking will give all zero
+class Solution {
+ public:
+  bool hasAlternatingBits(uint32_t n) {
+    uint32_t validator = n + (n >> 1);
+    return (validator & validator + 1) == 0;
+  }
+};
