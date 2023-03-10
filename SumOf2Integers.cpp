@@ -33,3 +33,21 @@ public:
         return (a | b) + (a & b); 
     }
 };
+
+class Solution {
+public:
+    int getSum(int a, int b) {
+        int sum = 0,carry = 0,i = 0;
+        while((a || b) && i<32){
+            int l  = a & 1,m = b & 1;
+            sum |= (carry^l^m)<<i;
+            carry = (carry & l) | (l & m) | (carry & m);
+            // cout<<carry<<endl;
+            i++;
+            a >>= 1;
+            b >>= 1;
+        }
+        if(carry && i<32)sum |= 1<<i;
+        return sum;
+    }
+};
