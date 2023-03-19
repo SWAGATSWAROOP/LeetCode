@@ -42,6 +42,7 @@
 // Acceptance Rate
 // 52.0%
 
+//Recursion
 class Solution {
 public:
     string countAndSay(int n) {
@@ -62,5 +63,31 @@ public:
         else k += '1'; 
         k += m[o];
         return k;
+    }
+};
+
+//Without Recursion
+class Solution {
+public:
+    string countAndSay(int n) {
+        string m = "1";
+        for(int i = 1;i<n;i++){
+            int o = m.size()-1;
+            int count = 1;
+            string k = "";
+            for(int i = 0;i<o;i++){
+                if(m[i]==m[i+1])count++;
+                else{
+                    k += count+48;
+                    k = k + m[i];
+                    count = 1;
+                }
+            }
+            if(count > 1) k += count + 48;
+            else k += '1'; 
+            k += m[o];
+            m = k;
+        }
+        return m;
     }
 };
