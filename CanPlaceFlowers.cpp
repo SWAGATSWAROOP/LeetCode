@@ -44,7 +44,6 @@ public:
                 i+=2;
             }
         }
-        if(count>= n)return true;
-        return false;
+        return (count>= n);
     }
 };
