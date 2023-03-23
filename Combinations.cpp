@@ -56,3 +56,27 @@ public:
         return v;
     }
 };
+
+//Little bit optimized
+class Solution {
+public:
+    void c(vector<vector<int>>& v,vector<int>v2,int n,int idx,int k){
+        if(!k){
+            v.push_back(v2);
+            return;
+        }
+        for(int i = idx;i<=n;i++){
+            v2.push_back(i);
+            c(v,v2,n,i+1,k-1);
+            v2.pop_back();
+        }
+        return;
+    }
+
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> v;
+        vector<int> v2;
+        c(v,v2,n,1,k);
+        return v;
+    }
+};
