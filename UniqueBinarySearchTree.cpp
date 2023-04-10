@@ -45,3 +45,23 @@ public:
         return arr[n];
     }
 };
+
+// Now Running the loop n/2 times 100%
+class Solution {
+public:
+    int numTrees(int n) {
+        if(n<=2)return n;
+        int arr[n+1];
+        arr[0] = 1;
+        arr[1] = 1;
+        arr[2] = 2;
+        for(int i = 3;i<=n;i++){
+            arr[i] = 0;
+            int half = ceil((1.0*i)/2);
+            for(int j = 1;j<half;j++)arr[i] += arr[j-1]*arr[i-j]*2;
+            if(i%2)arr[i] += arr[half-1]*arr[half-1];
+            else arr[i] += arr[half-1]*arr[i-half]*2;
+        }
+        return arr[n];
+    }
+};
