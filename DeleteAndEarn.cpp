@@ -51,3 +51,16 @@ public:
         return max(v[9999],v[9998]);
     }
 };
+
+//using Array Instead of vector reduces time complexity
+class Solution {
+public:
+    int deleteAndEarn(vector<int>& nums){
+        int v[10000] = {0};
+        int n = nums.size();
+        for(int i=0;i<n;i++)v[nums[i]-1] += nums[i];
+        v[2] += v[0];
+        for(int i=3;i<10000;i++)v[i] += max(v[i-2],v[i-3]);
+        return max(v[9999],v[9998]);
+    }
+};
