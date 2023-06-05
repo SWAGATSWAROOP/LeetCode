@@ -115,3 +115,29 @@ public:
         return dp[word1Length][word2Length];
     }
 };
+
+//Space Optimization O(n) space
+const static auto initialize = [] { std::ios::sync_with_stdio(false); 
+std::cin.tie(nullptr); std::cout.tie(nullptr); return nullptr; }();
+
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        int n = word1.size(),m = word2.size();
+        vector<int> v(n+1,0);
+        for(int i=0;i<=n;i++)v[i] = i;
+        int prev;
+        for(int i=1;i<=m;i++){
+            for(int j=0;j<=n;j++){
+                int temp = v[j];
+                if(j != 0){
+                    if(word1[j-1] != word2[i-1])v[j] = 1 + min(prev,min(v[j],v[j-1]));
+                    else v[j] = prev;
+                }
+                else v[j] = i;
+                prev = temp;
+            }
+        }
+        return v[n];
+    }
+};
