@@ -57,3 +57,25 @@ public:
         return minR(v,s,0,n-1,n);;
     }
 };
+
+//Added Tabulation with some seeing Answer
+
+const static auto initialize = [] { std::ios::sync_with_stdio(false); 
+std::cin.tie(nullptr); std::cout.tie(nullptr); return nullptr; }();
+
+class Solution {
+public:
+    int minInsertions(string s) {
+        int n = s.size(),prev = 0;
+        vector<int> v(n,0);
+        for(int i=n-2;i>=0;i--){
+            prev = 0;
+            for(int j = i+1;j<n;j++){
+                int temp = v[j];
+                v[j] = s[i] == s[j] ? prev:1+min(v[j],v[j-1]);
+                prev = temp;
+            }
+        }
+        return v[n-1];
+    }
+};
