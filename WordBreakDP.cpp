@@ -1,4 +1,4 @@
-139. Word Break
+/*139. Word Break
 Medium
 14.3K
 603
@@ -61,6 +61,22 @@ public:
     }
 };
 
-//Tabulation
-
+//Tabulation Done On My Own Don't Know beats
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n = s.size();
+        vector<int> res(n+1,0);
+        res[n] = 1;
+        for(int i = n-1;i>=0;i--){
+            for(int j = 1;j<=n-i;j++){
+                if(find(wordDict.begin(),wordDict.end(),s.substr(i,j)) != wordDict.end() && res[i+j]){
+                    res[i] = 1;
+                    break;
+                }
+            }
+        }
+        return res[0];
+    }
+};
 
