@@ -1,3 +1,6 @@
+const static auto initialize = [] { std::ios::sync_with_stdio(false); 
+std::cin.tie(nullptr); std::cout.tie(nullptr); return nullptr; }();
+
 class Solution {
 public:
     bool isvalid(vector<int>& weights,int days,int mid,int n){
