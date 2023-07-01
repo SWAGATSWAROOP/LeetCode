@@ -12,6 +12,7 @@ public:
         }
         for(int i = 0;i<k;i++){
             if(fair <= bags[i])continue;
+            if(i >0 && bags[i] == bags[i-1])continue;
             bags[i] += cookies[index];
             dc(cookies,bags,n,index+1,k,fair);
             bags[i] -= cookies[index];
