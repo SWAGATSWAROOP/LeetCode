@@ -23,6 +23,7 @@ public:
         int n = cookies.size();
         vector<int> bags(k,0);
         int sum = accumulate(cookies.begin(),cookies.end(),0);
+        sort(cookies.begin(),cookies.end(),greater<int>());
         int fair = ceil(1.0*sum)/k;
         dc(cookies,bags,n,0,k,fair);
         return ans;
