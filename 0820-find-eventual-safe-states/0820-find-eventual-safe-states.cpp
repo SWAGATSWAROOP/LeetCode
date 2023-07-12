@@ -1,11 +1,12 @@
+const static auto initialize = [] { std::ios::sync_with_stdio(false); 
+std::cin.tie(nullptr); std::cout.tie(nullptr); return nullptr; }();
+
 class Solution {
 public:
     int dfs(vector<vector<int>>& graph,vector<int>& t,int index){
         if(t[index] != -2)return t[index];
         t[index] = -1;
-        for(auto x:graph[index]){
-            if(dfs(graph,t,x) <= 0)return t[index] = 0;
-        }
+        for(auto x:graph[index])if(dfs(graph,t,x) <= 0)return t[index] = 0;
         return t[index] = 1;
     }
 
