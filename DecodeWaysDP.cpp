@@ -68,3 +68,34 @@ public:
         return v[0];
     }
 };
+
+//With Space Optimization
+const static auto initialize = [] { std::ios::sync_with_stdio(false); 
+std::cin.tie(nullptr); std::cout.tie(nullptr); return nullptr; }();
+
+class Solution {
+public:
+    int numDecodings(string& s){
+        int nextn = 1;
+        int next = s[s.size()-1] == '0' ? 0:1;
+        for(int i = s.size()-2;i>=0;i--){
+            if(s[i] == '0'){
+                nextn = next;
+                next = 0;
+            }
+            else{
+                int o = next;
+                int l = s[i+1] - 48;
+                int z = s[i] - 48;
+                if((z == 2 && l >= 7) || z > 2){
+                    nextn = next;
+                    continue;
+                }
+                o += nextn;
+                nextn = next;
+                next = o;
+            }
+        }
+        return next;
+    }
+};
