@@ -12,7 +12,6 @@ public:
             if(isValid(s.substr(index),s.size()-index)){
                 v.push_back(s);
             }
-            cout<<endl;
             return;
         }
         for(int i = 1;i<=3 && index+i<s.size();i++){
