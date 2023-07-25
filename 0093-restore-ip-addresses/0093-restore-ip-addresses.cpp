@@ -8,8 +8,7 @@ public:
 
     void restoreIpAddresses(string s,vector<string>& v,int count,int index){
         if(!count){
-            cout<<s.substr(index)<<endl;
-            cout<<s<<" "<<s.size()-index<<endl;
+            cout<<s<<endl;
             if(isValid(s.substr(index),s.size()-index)){
                 v.push_back(s);
             }
@@ -19,7 +18,6 @@ public:
         for(int i = 1;i<=3 && index+i<s.size();i++){
             if(isValid(s.substr(index,i),i)){
                 s.insert(index+i,".");
-                cout<<s.substr(index,i+1);
                 restoreIpAddresses(s,v,count-1,index+i+1);
                 s.erase(index+i,1);
             }
