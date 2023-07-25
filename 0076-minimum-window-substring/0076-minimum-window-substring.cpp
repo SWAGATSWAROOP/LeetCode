@@ -19,7 +19,7 @@ public:
                 }
                 if(flag){
                     z = j - i;
-                    if(z < len){
+                    if(z <= len){
                         g = s.substr(i,z);
                         len = z;
                     }
