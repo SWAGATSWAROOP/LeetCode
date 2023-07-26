@@ -11,7 +11,17 @@ int count(int amount,vector<int>& coins,int index,int sum,vector<vector<int>>& v
     }
     
     int change(int amount, vector<int>& coins) {
-        vector<vector<int>> v(coins.size(),vector<int>(amount,-1));
-        return count(amount,coins,0,0,v);
+        vector<int> prev(amount+1,0),curr(amount+1,0);
+        prev[amount] = 1;
+        for(int i = coins.size()-1;i>=0;i--){
+            for(int j = amount;j>=0;j--){
+                int a = prev[j];
+                int b = 0;
+                if(j + coins[i] <= amount)b = curr[j+coins[i]];
+                curr[j] = a+b;
+            }
+            prev = curr;
+        }
+        return curr[0];
     }
 };
