@@ -5,7 +5,8 @@ int count(int amount,vector<int>& coins,int index,int sum,vector<vector<int>>& v
         if(index == coins.size() || sum > amount)return 0;
         if(v[index][sum] != -1)return v[index][sum];
         int a = count(amount,coins,index+1,sum,v);
-        int b = count(amount,coins,index,sum+coins[index],v);
+        int b = 0;
+        if(sum + coins[index] <= amount)b = count(amount,coins,index,sum+coins[index],v);
         return v[index][sum] = a+b;
     }
     
