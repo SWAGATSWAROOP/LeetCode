@@ -17,7 +17,7 @@ public:
                 }
             }
             i++;
-            if((target < 0 && numbers[i] > 0) || (target > 0 && numbers[i] > target))break;
+            if(i+1 <= J && numbers[i]+numbers[i+1] > target)break;
         }
         return v;
     }
