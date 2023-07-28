@@ -1,3 +1,6 @@
+const static auto initialize = [] { std::ios::sync_with_stdio(false); 
+std::cin.tie(nullptr); std::cout.tie(nullptr); return nullptr; }();
+
 class Solution {
 public:
     pair<int,int> w(vector<int>& nums,int i,int j,int turn){
