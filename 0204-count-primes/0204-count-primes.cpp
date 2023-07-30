@@ -3,9 +3,9 @@ public:
     int countPrimes(int n) {
         vector<int> arr(n,0);
         int count = 0;
-        for(int i = 2;i<n;i++){
+        for(int i = 2;i*i<n;i++){
             if(arr[i])continue;
-            for(int j = 2;i*j<n;j++)arr[i*j] = 1;
+            for(int j = i*i;j < n;j += i)arr[j] = 1;
         }
         for(int i = 2;i<n;i++){
             if(!arr[i])count++;
