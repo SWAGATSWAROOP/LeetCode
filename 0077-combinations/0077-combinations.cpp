@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void Recurr(vector<vector<int>>& v,vector<int> v1,int index,int k,const int n){
+    void Recurr(vector<vector<int>>& v,vector<int>& v1,int index,int k,const int n){
         if(!k){
             v.push_back(v1);
             return;
