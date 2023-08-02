@@ -7,7 +7,7 @@ public:
         vector<int> prev(amount+1,0);
         prev[amount] = 1;
         for(int i = coins.size()-1;i>=0;i--){
-            for(int j = amount;j>=0;j--){
+            for(int j = amount-1;j>=0;j--){
                 int a = prev[j];
                 int b = 0;
                 if(j + coins[i] <= amount)b = prev[j+coins[i]];
