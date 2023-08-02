@@ -10,11 +10,11 @@ public:
             for(int j = amount;j>=0;j--){
                 int a = prev[j];
                 int b = 0;
-                if(j + coins[i] <= amount)b = curr[j+coins[i]];
-                curr[j] = a+b;
+                if(j + coins[i] <= amount)b = prev[j+coins[i]];
+                prev[j] = a+b;
             }
-            prev = curr;
+            // prev = curr;
         }
-        return curr[0];
+        return prev[0];
     }
 };
