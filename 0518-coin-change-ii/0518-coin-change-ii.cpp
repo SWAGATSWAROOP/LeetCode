@@ -9,8 +9,7 @@ public:
         for(int i = coins.size()-1;i>=0;i--){
             for(int j = amount-coins[i];j>=0;j--){
                 int a = prev[j];
-                int b = 0;
-                if(j + coins[i] <= amount)b = prev[j+coins[i]];
+                int b = prev[j+coins[i]];
                 prev[j] = a+b;
             }
         }
