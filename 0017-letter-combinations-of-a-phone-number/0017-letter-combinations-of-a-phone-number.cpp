@@ -1,37 +1,24 @@
 class Solution {
-public: 
+public:
     unordered_map<char,string> map;
 
-    void letter(vector<string>& v,string digits){
-        if(digits.length() == 1){
-            string o = map[digits[0]];
-            int l = o.length();
-            for(int i=0;i<l;i++){
-                v.push_back("");
-                v[i] += o[i]; 
-            }
+    void C(vector<string>& v,string s,int i,string digits){
+        if(i == digits.size()){
+            v.push_back(s);
             return;
         }
-        letter(v,digits.substr(1));
-        int k = v.size();
-        int l = map[digits[0]].length();
-        for(int i = 1;i<l;i++){
-            for(int j = 0;j<k;j++){
-                v.push_back(v[j]);
-            }
-        }
-        for(int i=0;i<l;i++){
-            for(int j=0;j<k;j++){
-                v[k*i + j] = map[digits[0]][i] + v[j+i*k];
-            }
+        cout<<map[digits[i]]<<endl;
+        for(int j = 0;j<map[digits[i]].size();j++){
+            s.push_back(map[digits[i]][j]);
+            C(v,s,i+1,digits);
+            s.pop_back();
         }
         return;
     }
+
     vector<string> letterCombinations(string digits) {
         vector<string> v;
-        if(digits.length()==0){
-            return v;
-        }
+        if(!digits.size())return v;
         map['2'] = "abc";
         map['3'] = "def";
         map['4'] = "ghi";
@@ -39,8 +26,8 @@ public:
         map['6'] = "mno";
         map['7'] = "pqrs";
         map['8'] = "tuv";
-        map['9'] = "wxyz";
-        letter(v,digits);
+        map['9'] = "wxyz"; 
+        C(v,"",0,digits);
         return v;
     }
 };
