@@ -11,9 +11,21 @@ public:
         return v[i][m][n] =  max(l,k);
     }
 
-    int findMaxForm(vector<string>& strs, int m, int n) {
-        vector<vector<vector<int>>> v(strs.size(),vector<vector<int>>(m+1,vector<int>(n+1,-1)));
-        int l = findMx(strs,m,n,0,v);
-        return l;
+    int findMaxForm(vector<string>& s, int m, int n) {
+        vector<vector<int>> prev(m+1,vector<int>(n+1,0)),curr(m+1,vector<int>(n+1,0));
+        for(int i = 0;i<s.size();i++){
+            for(int j = 0;j<=m;j++){
+                for(int k = 0;k<=n;k++){
+                    int l = 0;
+                    int z = j-count(s[i].begin(),s[i].end(),'0');
+                    int y = k-count(s[i].begin(),s[i].end(),'1');
+                    if(z >= 0 && y >= 0)l = 1+prev[z][y];
+                    int u = prev[j][k];
+                    curr[j][k] =  max(l,u);
+                }
+            }
+            prev = curr;
+        }
+        return prev[m][n];
     }
 };
