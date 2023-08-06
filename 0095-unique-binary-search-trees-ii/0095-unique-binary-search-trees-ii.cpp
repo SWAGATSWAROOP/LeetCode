@@ -11,16 +11,20 @@
  */
 class Solution {
 public:
-    vector<TreeNode*> generateTrees(int n,int mn = 1) {
-        if(mn > n)return {NULL};
+    map <pair<int,int>,vector<TreeNode*>> map;
+
+    vector<TreeNode*> generateTrees(int n,int s = 1) {
+        pair<int,int> p(n,s);
+        if(map.find(p)!=map.end())return map[p];
+        if(n < s)return {NULL};
         vector<TreeNode*> v;
-        for(int i = mn;i<=n;i++){
-            for(auto l:generateTrees(i-1,mn)){
+        for(int i = s;i<=n;i++){
+            for(auto l:generateTrees(i-1,s)){
                 for(auto r:generateTrees(n,i+1)){
                     v.push_back(new TreeNode(i,l,r));
                 }
             }
         }
-        return v;
+        return map[p] = v;
     }
 };
