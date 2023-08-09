@@ -1,13 +1,14 @@
 class Solution {
 public:
-    bool mn(vector<int> nums, int p,int mid){
-        int prev = INT_MAX;
-        for(int i = 1;i<nums.size();i++){
-            if(nums[i]-nums[i-1] <= mid){
+    bool mn(vector<int>& nums, int p,int mid){
+        int index = 1;
+        while(index < nums.size()){
+            if(nums[index]-nums[index-1] <= mid){
                 p--;
-                nums[i] = -1*(mid+1);
+                index++;
                 if(!p)return true;
             }
+            index++;
         }
         return false;
     }
