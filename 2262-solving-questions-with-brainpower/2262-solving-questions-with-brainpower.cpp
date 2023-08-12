@@ -9,7 +9,13 @@ public:
     }
 
     long long mostPoints(vector<vector<int>>& questions) {
-        vector<long long> q(questions.size(),0);
-        return mP(questions,0,q);
+        vector<long long> q(questions.size()+1,0);
+        for(int i = questions.size()-1;i >= 0;i--){
+            long long notake = q[i+1];
+            long long take = i + questions[i][1] + 1 < questions.size() ? q[i+questions[i][1]+1] : 0;
+            take += questions[i][0];
+            q[i] = max(take,notake);
+        }
+        return q[0];
     }
 };
