@@ -7,7 +7,7 @@ public:
         for(int l = 0;l<k;l++){
             s.insert(nums[l]);
         }
-        multiset<int>::iterator itr = s.end();
+        auto itr = s.end();
         itr--;
         v.push_back(*itr);
         if(k == nums.size())return v;
@@ -15,7 +15,7 @@ public:
             auto it = s.find(nums[i]);
             s.erase(it);
             s.insert(nums[j]);
-            multiset<int>::iterator itr = s.end();
+            auto itr = s.end();
             itr--;
             v.push_back(*itr);
         }
