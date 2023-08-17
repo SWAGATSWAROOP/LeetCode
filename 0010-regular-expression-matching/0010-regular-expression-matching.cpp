@@ -18,13 +18,12 @@ public:
             if(p[k]!= '.' && p[k]!=s[i])return match(s,p,i,j+1,v);
             return v[i][j] = match(s,p,i+1,j+1,v) || match(s,p,i,j+1,v) || match(s,p,i+1,j,v);
         }
-        else if(s[i]!=p[j] && p[j]!='.'){
-            if(j+1 < p.size() && p[j+1] == '*')return v[i][j] = match(s,p,i,j+2,v);
-            return 0;
-        }
         else if(j+1 < p.size() && p[j+1] == '*'){
-            return v[i][j] = match(s,p,i+1,j+1,v) || match(s,p,i,j+2,v);
+            int l =  match(s,p,i,j+2,v),o = 0;
+            if(s[i] == p[j] || p[j] == '.')o = match(s,p,i+1,j+1,v);
+            return v[i][j] = o || l;
         }
+        else if(s[i]!=p[j] && p[j]!='.')return 0;
         return v[i][j] = match(s,p,i+1,j+1,v);
     }
 
