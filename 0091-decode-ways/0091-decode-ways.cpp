@@ -11,7 +11,17 @@ public:
 
     int numDecodings(string& s) {
         if(s[0] == '0')return 0;
-        vector<int> v(s.size(),-1);
-        return count(s,0,v);
+        vector<int> v(s.size()+1,0);
+        v[s.size()] = 1;
+        for(int i = s.size()-1;i>=0;i--){
+            int c = v[i+1],d = 0;
+            if(s[i] == '0'){
+                v[i] = 0;
+                continue;
+            }
+            if(i+1 < s.size() && (s[i] < '2' || (s[i] == '2' && s[i+1] <= '6')))d = v[i+2];
+            v[i] = c+d;
+        }
+        return v[0];
     }
 };
