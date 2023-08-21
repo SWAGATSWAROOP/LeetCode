@@ -8,7 +8,7 @@ public:
             if(s.substr(0,mid) == s.substr(mid,mid) && s.substr(k,mid) == s.substr(k+mid,mid) && s.substr(0,mid) == s.substr(k,mid))return true;
             k += 2;
             mid = (s.size()-k)/2;
-            }
+        }
     return false;
     }
 };
