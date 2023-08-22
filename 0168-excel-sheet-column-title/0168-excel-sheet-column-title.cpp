@@ -12,9 +12,10 @@ public:
                 break;
             }
         }
-        string a = arr3.substr((col-1)/num -1,1);
+        int m = (col-1)/num;
+        string a = arr3.substr(m-1,1);
         int b = col%num;
-        if(!(b))b = col - num*((col-1)/num);
+        if(!(b))b = col - num*m;
         a += c(b);
         return a;
     }
