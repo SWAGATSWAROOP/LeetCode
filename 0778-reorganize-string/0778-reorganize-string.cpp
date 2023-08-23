@@ -38,15 +38,13 @@ public:
             }
             else i++;
         }
-        cout<<s<<endl;
-        bool m = true;
-        for(int i = 1;i<n;i++){
-            if(s[i] == s[i-1]){
-                m = false;
-                break;
-            }
-        }
-        if(m)return s;
-        return "";
+        // bool m = true;
+        // for(int i = 1;i<n;i++){
+        //     if(s[i] == s[i-1]){
+        //         m = false;
+        //         break;
+        //     }
+        // }
+        return s;
     }
 };
