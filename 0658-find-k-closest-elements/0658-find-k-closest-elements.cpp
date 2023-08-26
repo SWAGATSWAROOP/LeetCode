@@ -12,7 +12,6 @@ public:
         priority_queue<int,vector<int>,greater<int>> pq;
         if(arr[mid] > x)mid--;
         vector<int> v;
-        cout<<mid<<endl;
         int m = mid,l = mid+1;
         while(k && m >=0 && l < arr.size()){
             int a = abs(arr[m] - x);
