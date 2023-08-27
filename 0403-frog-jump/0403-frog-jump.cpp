@@ -13,6 +13,7 @@ public:
 
     bool Cross(vector<int>& stones,int i,int k,vector<vector<int>>& v){
         if(stones.size()-1 <= i)return true;
+        if(stones[stones.size()-1] < stones[i] + k - 1)return false;
         if(v[i][k] != -1)return v[i][k];
         int a = stones[i] + k - 1;
         int b = stones[i] + k;
