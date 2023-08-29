@@ -1,25 +1,24 @@
 class Solution {
 public:
     int bestClosingTime(string customers) {
-        vector<pair<int,int>> v(customers.size()+1);
-        v[0] = make_pair(0,0);
-        int totalY = 0;
-        for(int i = 1;i<=customers.size();i++){
-            if(customers[i-1] == 'Y'){
-                v[i] = make_pair(v[i-1].first+1,v[i-1].second);
-                totalY++;
-            }
-            else v[i] = make_pair(v[i-1].first,v[i-1].second+1);
-        }
-        int penality = 1e5+1;
-        int ans = 0;
-        for(int i = 0;i<=customers.size();i++){
-            int p = totalY - v[i].first + v[i].second;
-            if(penality > p){
-                penality = p;
+        int penality = customers.size();
+        int p = penality;
+        int ans = 0,countY = 0;
+        int n = customers.size()-1;
+        for(int i = 0;i<=n;i++){
+            penality -= countY;
+            cout<<penality<<endl;
+            if(p > penality || (i == n && p == penality && customers[n] == 'Y')){
                 ans = i;
+                p = penality;
+            }
+            if(customers[i] == 'Y')countY = 1;
+            else {
+                penality++;
+                countY = 0;
             }
         }
+        if(ans == n && customers[n] == 'Y')ans++;
         return ans;
     }
 };
