@@ -16,16 +16,13 @@ public:
             i--;
             j--;
         }
-        cout<<ans<<endl;
         while(j >= 0){
             int x = z[j] - '0' + carry;
             carry = x >= 10 ? 1:0;
             ans = char('0' + x%10) + ans;
             j--;
         }
-        cout<<ans<<endl;
         if(carry)ans = "1" + ans;
-        cout<<ans<<endl;
         return;
     }
 
