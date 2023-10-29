@@ -1,46 +1,33 @@
 class Solution {
 public:
     bool backspaceCompare(string s, string t) {
-        int k=0,p=0;
-        for(int i=0;i<s.size();i++)
-        {
-            if(s[i]=='#')
-            {
-                k--;
-                 k=max(0,k);
+        int c1 = 0,c2 = 0;
+        while(s.size() || t.size()){
+            while(s.size() && s.back() == '#'){
+                s.pop_back();
+                c1++;
             }
-            
-           else
-           {
-               s[k]=s[i];
-               k++;
-           }
-        }
-        for(int i=0;i<t.size();i++)
-        {
-            if(t[i]=='#')
-            {
-                p--;
-                 p=max(0,p);
+            while(s.size() && c1){
+                if(s.back() == '#')break;
+                s.pop_back();
+                c1--;
             }
-            
-           else
-           {
-               t[p]=t[i];
-               p++;
-           }
-        }
-        if(k!=p)
-            return false;
-        else
-        {
-            for(int i=0;i<k;i++)
-            {
-                if(s[i]!=t[i])
-                    return false;
+            while(t.size() && t.back() == '#'){
+                t.pop_back();
+                c2++;
             }
-            return true;
+            while(t.size() && c2){
+                if(t.back() == '#')break;
+                t.pop_back();
+                c2--;
+            }
+            if((!s.size() && t.size() && t.back() != '#') || (!t.size() && s.size() && s.back() != '#'))return false;
+            else if(s.size() && t.size() && s.back() != '#' && t.back() != '#'){
+                if(s.back() != t.back())return false;
+                s.pop_back();
+                t.pop_back();
+            }
         }
-        
+        return true;
     }
 };
