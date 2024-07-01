@@ -4,6 +4,10 @@
  * @return {number[]}
  */
 var filter = function(arr, fn) {
-    let newArr = arr.filter((ele,index) => fn(ele,index))
-    return newArr;
+    return arr.reduce((newArr,ele,index) => {
+        if(fn(ele,index)){
+            newArr.push(ele);
+        }
+        return newArr;
+    },[]);
 };
