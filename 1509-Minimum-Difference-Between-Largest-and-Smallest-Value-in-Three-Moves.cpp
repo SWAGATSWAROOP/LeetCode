@@ -1,14 +1,13 @@
 class Solution {
 public:
     int minDifference(vector<int>& nums) {
-        if(nums.size() <= 4) {
-            return 0;
+        int size = nums.size();
+        if(size <= 4)return 0;
+        sort(nums.begin(),nums.end());
+        int mindiff = INT_MAX;
+        for(int i = 0,j = size  - 4;j < size;i++,j++){
+            mindiff = min(mindiff,(nums[j] - nums[i]));
         }
-        sort(nums.begin(), nums.end());
-        int ans = nums.back() - nums[0];
-        for(int i = 0; i <= 3; i++) {
-            ans = min(ans, nums[nums.size() - (3 - i) - 1] - nums[i]);
-        }
-        return ans;
+        return mindiff;
     }
 };
