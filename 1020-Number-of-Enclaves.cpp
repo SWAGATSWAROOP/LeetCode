@@ -1,16 +1,14 @@
 class Solution {
 public:
-    int dfs(vector<vector<int>>& grid,int i,int j,vector<vector<bool>>& vis){
-        if(i < 0 || j < 0 || i == grid.size() || j == grid[0].size() || vis[i][j] || !grid[i][j])return 0;
+    void dfs(vector<vector<int>>& grid,int i,int j,vector<vector<bool>>& vis){
+        if(i < 0 || j < 0 || i == grid.size() || j == grid[0].size() || vis[i][j] || !grid[i][j])return;
         vis[i][j] = true;
         int xCoordinate[] = {0,0,-1,1};
         int yCoordinate[] = {-1,1,0,0};
 
-        int sum = 1;
         for(int l = 0;l < 4;l++){
-            sum += dfs(grid,i+xCoordinate[l],j+yCoordinate[l],vis);
+            dfs(grid,i+xCoordinate[l],j+yCoordinate[l],vis);
         }
-        return sum;
     }
 
     int numEnclaves(vector<vector<int>>& grid) {
