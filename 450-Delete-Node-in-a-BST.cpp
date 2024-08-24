@@ -22,11 +22,16 @@ public:
     TreeNode* search(TreeNode* root,int key){
         if(!root)return 0;
         if(key == root->val){
-            if(root->right){
-                if(root->left)addLeft(root->right,root->left);
-                return root->right;
+            TreeNode* left = root->left;
+            TreeNode* right = root->right;
+            root->left = 0;
+            root->right = 0;
+            delete root;
+            if(right){
+                if(left)addLeft(right,left);
+                return right;
             }
-            return root->left;
+            return left;
         }
         if(key > root->val)root->right = search(root->right,key);
         root->left = search(root->left,key);
